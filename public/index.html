@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Agent Based COVID19 Modeling</title>
+    <link rel="stylesheet" href="./main.css">
+    <script src="./main.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('input[name="Healthcare"]').click(function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+                                           );
+      }
+                       );
+      window.onload = function () {
+        for (var i = 0; i < 4; i++) {
+          document.getElementById("ageAddRow").click();
+        }
+      };
+    </script>
+
+  </head>
+  <body translate="no">
+    <div id="x_head">
+    <div id="cont">
+      <p>
+        <a>
+          Agent Based COVID19 Modelling
+        </a>
+      </p>
+    </div>
+    </div>
+    <div id="outer">
+    <h2>Parameters</h2>
+    <hr style="background:white">
+    <table>
+          <tr>
+            <td>
+              <label for="scenario">No. of scenarios
+              </label>
+            </td>
+            <td>
+              <input type="number" name="scenario" id="scenario" min="1">
+            </td>
+          </tr>
+          <!-- No. of parallel processes -->
+          <tr class="dns">
+            <td>
+              <label for="process">No. of regions
+              </label>
+            </td>
+            <td>
+              <input type="number" name="process" id="process" min="1">
+              <script>
+                window.onload = () => {
+                  $("#process").val(1);
+                }
+              </script>
+            </td>
+          </tr>
+        </table>
+        <!-- Parent div -->
+        <div id="flexbox"> 
+        </div>
+        <button id="create" onclick='addChildDiv(document.getElementById("process").value)'>Create
+        </button>
+        <div class="dns">
+          <!-- Population distribution -->
+          <h1>Age wise population distribution
+          </h1>
+          <table id="pop-dist">
+            <tr>
+              <td>
+                <label>Max age
+                </label>
+              </td>
+              <td>
+                <label>Probability
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type="number" name="range" id="range0" value="18">
+              </td>
+              <td>
+                <input type="number" name="prob" id="prob1" min="0" max="1" step="0.001" value="0.381">
+              </td>
+            </tr>
+            <!-- Add subsequent rows for population distribution -->
+            <!-- <p id="warn"></p> -->
+          </table>
+          <button onclick="addRow()" id="ageAddRow">Add row
+          </button>
+          <button onclick="delRow('pop-dist')">Delete row
+          </button>
+          <button onclick="fillRowDeaths(); fillRowIncub(); fillRowSev();fillRowWork(); fillRowComorb()">Done
+          </button>
+        </div>
+        <!-- Transportation parameters -->
+        <div id="transport">
+          <h1>Transportation parameters
+          </h1>
+          <table>
+            <tr>
+              <td>
+                <label for="airport">Expected people at airport
+                </label>
+              </td>
+              <td>
+                <input type="number" name="airport" id="airport" value="4">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="var-airport">Variance of people at airport
+                </label>
+              </td>
+              <td>
+                <input type="number" name="var-airport" id="var-airport" value="1">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="rlwy">Expected people at railway station
+                </label>
+              </td>
+              <td>
+                <input type="number" name="rlwy" id="rlwy" value="60">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="var-rlwy">Variance of people at railway station
+                </label>
+              </td>
+              <td>
+                <input type="number" name="var-rlwy" id="var-rlwy" value="10">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="local">Number of local transport
+                </label>
+              </td>
+              <td>
+                <input type="number" name="local" id="local" value="1">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="var-local">Expected people at local transport
+                </label>
+              </td>
+              <td>
+                <input type="number" name="var-local" id="var-local" value="1">
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="dns">
+          <!-- Workplaces -->
+          <div id="workplaces" class="label-inline">
+            <h1>Select one or more workplaces
+            </h1>
+            <div id="flexbox">
+              <div class="workplace">
+                <input type="checkbox" name="Education" id="Education" value="Education" unchecked
+                       onclick="expPeople('Education');addSectorCol('Education')">
+                <label>Education
+                </label>
+              </div>
+              <div class="workplace">
+                <input type="checkbox" name="Office" id="Office" value="Office" unchecked
+                       onclick="expPeople('Office');addSectorCol('Office')">
+                <label>Office
+                </label>
+              </div>
+            </div>
+            <div id="flexbox">
+              <div class="workplace">
+                <input type="checkbox" name="Commercial" id="Commercial" value="Commercial" unchecked
+                       onclick="expPeople('Commercial');addSectorCol('Commercial')">
+                <label>Commercial
+                </label>
+              </div>
+              <div class="workplace">
+                <input type="checkbox" name="Healthcare" value="Healthcare" checked>
+                <label>Healthcare
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- Expected people at a workplace -->
+          <div id="exp-workplace">
+            <h1>Expected people to work in a workplace
+            </h1>
+            <table id="empty-exp-workplace">
+              <tr>
+                <td>
+                  <label>Sector
+                  </label>
+                </td>
+                <td>
+                  <label>Expected people
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>Healthcare
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="healthcare" id="healthcare" placeholder="Healthcare" value="100">
+                </td>
+                <td>
+                  <input type="number" name="healthcare" id="healthcare" placeholder="Isolation" value="50">
+                </td>
+                <td>
+                  <input type="number" name="healthcare" id="healthcare" placeholder="Hospital" value="200">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                </td>
+                <td>
+                  <p>Healthcare
+                  </p>
+                </td>
+                <td>
+                  <p>Isolation
+                  </p>
+                </td>
+                <td>
+                  <p>Hospitals
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!-- Expected people to work in workplaces -->
+          <div id="exp-work">
+          </div>
+          <!-- Healthcare capacity -->
+          <div id="healthcare">
+            <h1>Healthcare capacity
+            </h1>
+            <table>
+              <tr>
+                <td>
+                  <label for="beds">Available beds
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="beds" id="beds" min="0" step="0.1" value="2">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="centres">Covid healthcare centres
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="centres" id="centres" min="0" step="0.1" value="1">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="staff">Staff force
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="staff" id="staff" min="0" step="0.1" value="1">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- Transaction model -->
+        <div id="purchases">
+          <h1>Transaction model
+          </h1>
+          <table>
+            <tr>
+              <td>
+                <label for="purchase">Probability of purchase
+                </label>
+              </td>
+              <td>
+                <input type="number" name="purchase" id="purchase" min="0" max="1" step="0.01" value="0.5">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="req">Minimum grocery requirement
+                </label>
+              </td>
+              <td>
+                <input type="number" name="req" id="req" value="19">
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="dns">
+          <!-- Modes for virus transmission -->
+          <div id="modes">
+            <h1>Virus transmission rate via
+            </h1>
+            <table>
+              <tr>
+                <td>
+                  <label for="transport">Transport
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="transport" id="transport" min="0" max="1" step="0.0001" value="0.000">
+                </td>
+                <!-- </tr>
+<tr> -->
+                <td>
+                  <label for="home">Home
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="home" id="home" min="0" max="1" step="0.0001" value="0.2000">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="grocery">Grocery
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="grocery" id="grocery" min="0" max="1" step="0.0001" value="0.0010">
+                </td>
+                <!-- </tr>
+<tr> -->
+                <td>
+                  <label for="edu">Education
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="edu" id="edu" min="0" max="1" step="0.0001" value="0.0100">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="office">Office
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="office" id="office" min="0" max="1" step="0.0001" value="0.0050">
+                </td>
+                <!-- </tr>
+<tr> -->
+                <td>
+                  <label for="comm">Commercial
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="comm" id="comm" min="0" max="1" step="0.0001" value="0.0100">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="health">Healthcare
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="health" id="health" min="0" max="1" step="0.0001" value="0.0000">
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!-- Death rate -->
+          <div id="deaths">
+            <h1>Virus death rates in different age groups
+            </h1>
+            <div id="empty-deaths">
+            </div>
+          </div>
+          <!-- Virus incubation period -->
+          <div id="incubation">
+            <h1>Virus incubation period in different age groups
+            </h1>
+            <div id="empty-incubation">
+            </div>
+          </div>
+          <!-- Expected  days to cure-->
+          <div id="recovery">
+            <h1>Expected days to cure
+            </h1>
+            <input type="number" name="recovery" id="recovery" min="1" value="14">
+          </div>
+        </div>
+        <!-- Initial testing capacity-->
+        <div id="test-cap">
+          <h1>Initial testing capacity
+          </h1>
+          <input type="number" name="test-cap" id="test-cap" min="0" value="100">
+        </div>
+        <div>
+          <h1>Total days for simulation to run
+          </h1>
+          <input type="number" name="total-days" id="total-days" min="0" value="100">
+        </div>
+        <div class="dns">
+          <!-- Full cap ratio -->
+          <div id="full-cap">
+            <h1>Healthcare full capacity ratio
+            </h1>
+            <table>
+              <tr>
+                <td>
+                  <label for="beds">Available beds
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="beds" id="beds" min="0" step="0.01" value="1.67">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="centres">Covid healthcare centres
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="centres" id="centres" min="0" step="0.01" value="1.67">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="staff">Staff force
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="staff" id="staff" min="0" step="0.01" value="1.67">
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!-- Prob of severity in age grps -->
+          <div id="sev-age">
+            <h1>Probability of severity of disease
+            </h1>
+            <table>
+              <tr>
+                <td>
+                  <label style="width:65px; margin-right: 20px;">Max age
+                  </label>
+                </td>
+                <td>
+                  <label style="width:65px;margin-right: 20px;">Mild
+                  </label>
+                </td>
+                <td>
+                  <label style="width:65px;margin-right: 20px;">Mediocre
+                  </label>
+                </td>
+                <td>
+                  <label style="width:65px;margin-right: 20px;">Severe
+                  </label>
+                </td>
+              </tr>
+            </table>
+            <div id="empty-sev">
+            </div>
+          </div>
+          <!-- Probability of contact tracing-->
+          <div id="trace">
+            <h1>Probability of contact tracing
+            </h1>
+            <input type="number" name="trace" id="trace" min="0" max="1" step="0.1" value="0.9">
+          </div>
+          <!-- Probability of people working in different sectors and age grps -->
+          <div>
+            <h1>Probability of people working in different sectors
+            </h1>
+            <div id="empty-age-work">
+              <table id="sector-params">
+                <tr id="sector-label">
+                  <td>
+                    <label>Max age
+                    </label>
+                  </td>
+                  <td>
+                    <label>Unemployed
+                    </label>
+                  </td>
+                  <td>
+                    <label>Healthcare
+                    </label>
+                  </td>
+                </tr>
+                <tr id="row1">
+                  <td>
+                    <input type="number" min="1" value="5">
+                  </td>
+                  <td>
+                    <input type="number" min="0" max="1" step="0.01" value="1.00" id="unemp">
+                  </td>
+                  <td>
+                    <input type="number" min="0" max="1" step="0.01" value="0.00" id="health">
+                  </td>
+                </tr>
+                <tr id="row2">
+                  <td>
+                    <input type="number" min="1" value="18">
+                  </td>
+                  <td>
+                    <input type="number" min="0" max="1" step="0.01" value="0.01" id="unemp">
+                  </td>
+                  <td>
+                    <input type="number" min="0" max="1" step="0.01" value="0.00" id="health">
+                  </td>
+                </tr>
+                <tr id="row3">
+                  <td>
+                    <input type="number" min="1" value="24">
+                  </td>
+                  <td>
+                    <input type="number" min="0" max="1" step="0.01" value="0.01" id="unemp">
+                  </td>
+                  <td>
+                    <input type="number" min="0" max="1" step="0.01" value="0.29" id="health">
+                  </td>
+                </tr>
+                <tr id="row4">
+                  <td>
+                    <input type="number" min="1" value="60">
+                  </td>
+                  <td>
+                    <input type="number" min="0" max="1" step="0.01" value="0.05" id="unemp">
+                  </td>
+                  <td>
+                    <input type="number" min="0" max="1" step="0.01" value="0.10" id="health">
+                  </td>
+                </tr>
+                <tr id="row5">
+                  <td>
+                    <input type="number" min="1" value="75">
+                  </td>
+                  <td>
+                    <input type="number" min="0" max="1" step="0.01" value="0.75" id="unemp">
+                  </td>
+                  <td>
+                    <input type="number" min="0" max="1" step="0.01" value="0.05" id="health">
+                  </td>
+                </tr>
+                <tr id="row6">
+                  <td>
+                    <input type="number" min="1" value="150">
+                  </td>
+                  <td>
+                    <input type="number" min="0" max="1" step="0.01" value="1.00" id="unemp">
+                  </td>
+                  <td>
+                    <input type="number" min="0" max="1" step="0.01" value="0.00" id="health">
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- <p id="warn"></p> -->
+            <!-- Add subsequent rows for population distribution -->
+            <button onclick="addEmptyRow('sector-params')">Add row
+            </button>
+            <button onclick="delLastRow('sector-params')">Delete row
+            </button>
+          </div>
+          <!-- Co-morbidity -->
+          <div id="comorbid">
+            <h1>Probability of contracting disease by different age groups
+            </h1>
+            <div id="empty-comorbid">
+            </div>
+          </div>
+          <!-- Probability of increase in severity -->
+          <div id="severity">
+            <h1>Probability of increase in severity
+            </h1>
+            <table>
+              <tr>
+                <td>
+                  <label for="sev">Mild
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="sev" id="sev-mild" min="0" max="1" step="0.01" value="0.1">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="sev">Moderate
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="sev" id="sev-mod" min="0" max="1" step="0.01" value="0.7">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="sev">Severe
+                  </label>
+                </td>
+                <td>
+                  <input type="number" name="sev" id="sev-sev" min="0" max="1" step="0.01" value="0.2">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <button id="simulate" onclick="tab_create();">Instantiate
+        </button>
+    </div>
+    <div id="x_right">
+    <h2>Simulations</h2>
+    <hr style="background:white">
+    </div>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>

@@ -1,0 +1,883 @@
+body, html {
+        font-family: Lato;
+        font-weight: 300;
+      }
+      body{
+      	-webkit-user-select: none;
+     	-moz-user-select: -moz-none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      h1 {
+        font-size: 28px;
+        line-height: 40px;
+        margin-top: 20px;
+      }
+      h1 a {
+        text-decoration: none;
+        color: #48c15e;
+      }
+      h1 p {
+        font-size: 22px;
+      }
+      #grid {
+        -moz-transform: translate(1px, 0px);
+        -ms-transform: translate(1px, 0px);
+        -webkit-transform: translate(1px, 0px);
+        transform: translate(1px, 0px);
+      }
+      
+     /*ADD VALUES HERE FOR GRAPH LINES*/
+      #graph-1 {
+        stroke: url(#gradient-1);
+        stroke-width: 0.5;
+        fill: transparent;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        -moz-animation: lineani 1.3s linear forwards;
+        -webkit-animation: lineani 1.3s linear forwards;
+        animation: lineani 1.3s linear forwards;
+      }
+      #graph-2 {
+        stroke: url(#gradient-2);
+        stroke-width: 0.5;
+        fill: transparent;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        -moz-animation: lineani 1.3s linear forwards;
+        -webkit-animation: lineani 1.3s linear forwards;
+        animation: lineani 1.3s linear forwards;
+      }
+      #graph-3 {
+        stroke: url(#gradient-5);
+        stroke-width: 0.5;
+        fill: transparent;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        -moz-animation: lineani 1.3s linear forwards;
+        -webkit-animation: lineani 1.3s linear forwards;
+        animation: lineani 1.3s linear forwards;
+      }
+      #graph-4 {
+        stroke: url(#gradient-8);
+        stroke-width: 0.5;
+        fill: transparent;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        -moz-animation: lineani 1.3s linear forwards;
+        -webkit-animation: lineani 1.3s linear forwards;
+        animation: lineani 1.3s linear forwards;
+      }
+      #graph-5 {
+        stroke: #ff0000;
+        stroke-width: 0.5;
+        fill: transparent;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        -moz-animation: lineani 1.3s linear forwards;
+        -webkit-animation: lineani 1.3s linear forwards;
+        animation: lineani 1.3s linear forwards;
+      }
+      #graph-6 {
+        stroke: #00ffff;
+        stroke-width: 0.5;
+        fill: transparent;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        -moz-animation: lineani 1.3s linear forwards;
+        -webkit-animation: lineani 1.3s linear forwards;
+        animation: lineani 1.3s linear forwards;
+      }
+      #graph-7 {
+        stroke: #ff00ff;
+        stroke-width: 0.5;
+        fill: transparent;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        -moz-animation: lineani 1.3s linear forwards;
+        -webkit-animation: lineani 1.3s linear forwards;
+        animation: lineani 1.3s linear forwards;
+      }
+      #graph-8 {
+        stroke: #e67a22;
+        stroke-width: 0.5;
+        fill: transparent;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        -moz-animation: lineani 1.3s linear forwards;
+        -webkit-animation: lineani 1.3s linear forwards;
+        animation: lineani 1.3s linear forwards;
+      }
+      #graph-9 {
+        stroke: #95a5a6;
+        stroke-width: 0.5;
+        fill: transparent;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        -moz-animation: lineani 1.3s linear forwards;
+        -webkit-animation: lineani 1.3s linear forwards;
+        animation: lineani 1.3s linear forwards;
+      }
+      #poly-1 {
+        fill: url(#gradient-3);
+      }
+      #poly-2 {
+        fill: url(#gradient-4);
+      }
+      #poly-3{
+        fill : url(#gradient-6);
+      }
+      #poly-4{
+        fill : url(#gradient-9);
+      }
+      #poly-5{
+        fill : rgba(255, 0, 0, 0.1);
+      }
+      #poly-6{
+        fill : rgba(0, 255, 255, 0.1);
+      }
+      #poly-7{
+        fill : rgba(255, 0, 255, 0.1);
+      }
+      #poly-8{
+        fill : rgba(230, 122, 34, 0.1);
+      }
+      #poly-9{
+        fill : rgba(149, 165, 166, 0.1);
+      }
+      #poly-0{
+        fill: url(#gradient-7);
+      }
+      .color-1{
+        color: #24c1ed;
+        font-size: 24px;
+      }
+      .color-2{
+        color: #f5af19;
+        font-size: 24px;
+      }
+      .color-3{
+        color: #7f00ff;
+        font-size: 24px;
+      }
+      .color-4{
+        color: #ff0000;
+        font-size: 24px;
+      }
+      .color-5{
+        color: #00ffff;
+        font-size: 24px;
+      }
+      .color-6{
+        color: #ff00ff;
+        font-size: 24px;
+      }
+      .color-7{
+        color: #e67a22;
+        font-size: 24px;
+      }
+      .color-8{
+        color: #95a5a6;
+        font-size: 24px;
+      }
+      @-moz-keyframes lineani {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      @-webkit-keyframes lineani {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes lineani {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      .underlay {
+        stroke-width: 5;
+        fill: transparent;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke: #24303a;
+      }
+      #circle-graph-1 {
+        stroke: url(#gradient-1);
+        stroke-width: 5;
+        fill: transparent;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .chart-circle {
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+      }
+      #circle-graph-2 {
+        stroke: url(#gradient-2);
+        stroke-width: 5;
+        fill: transparent;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      body {
+        background-color: #24303a;
+        color: white;
+        text-align: center;
+      }
+      .charts-container {
+        padding: 20px;
+        width: 100%;
+        max-width: 1024px;
+        display: inline;
+        /* text-align: center; */
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      .chart {
+        color: #ffffff;
+        text-align: left;
+        position: relative;
+        height: auto;
+        background-color: #000000;
+        /*#1e2730;*/
+        display: inline-block;
+        float: left;
+        position: relative;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 10px;
+        padding: 15px 20px 65px 20px;
+      }
+      .chart.circle {
+        padding: 15px 20px 40px 20px;
+      }
+      @media screen and (max-width: 1024px) {
+        .chart {
+          width: calc(100% - 20px);
+        }
+      }
+      @media screen and (min-width: 1024px) {
+        .chart {
+          width: calc(50% - 20px);
+        }
+      }
+      .title {
+        font-size: 22px;
+        margin-bottom: 12px;
+      }
+      .chart-circle {
+        display: inline-block;
+        position: relative;
+      }
+      .chart-svg {
+        position: relative;
+      }
+      .circle-percentage {
+        position: absolute;
+        color: white;
+        font-size: 48px;
+        left: 50%;
+        top: 50%;
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+      @media screen and (max-width: 480px) {
+        .circle-percentage {
+          font-size: 32px;
+        }
+      }
+      .align-center {
+        text-align: center;
+      }
+      .chart-line {
+        width: 96%;
+      }
+      .valueX {
+        font-size: 14px;
+      }
+      .chart-values {
+        text-align: right;
+        font-size: 18px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 15px;
+      }
+      .h-value {
+        -moz-transition: ease-in-out 700ms;
+        -o-transition: ease-in-out 700ms;
+        -webkit-transition: ease-in-out 700ms;
+        transition: ease-in-out 700ms;
+        opacity: 0;
+      }
+      .h-value.visible {
+        opacity: 1;
+      }
+      .percentage-value {
+        -moz-transition: ease-in-out 700ms;
+        -o-transition: ease-in-out 700ms;
+        -webkit-transition: ease-in-out 700ms;
+        transition: ease-in-out 700ms;
+        color: #48c15e;
+        margin-top: 2px;
+        opacity: 0;
+      }
+      .percentage-value.negative {
+        color: #ef6670;
+      }
+      .percentage-value.visible {
+        opacity: 1;
+      }
+      .total-gain {
+        color: white;
+        font-size: 48px;
+      }
+      .triangle {
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 28px 0 0 28px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+      .triangle.red {
+        border-color: transparent transparent transparent #ef6670
+      }
+      .triangle.green {
+        border-color: transparent transparent transparent #48c15e;
+      }
+      .horizontal,
+      .vertical {
+        stroke-width: 0.1;
+        stroke: #4a667a;
+      }
+      /* CLEARFIX HELPER */
+      .cf:before,
+      .cf:after {
+        content: " ";
+        /* 1 */
+        display: table;
+        /* 2 */
+      }
+      .cf:after {
+        clear: both;
+      }
+      /**
+      * For IE 6/7 only
+      * Include this rule to trigger hasLayout and contain floats.
+      */
+      .cf {
+        *zoom: 1;
+      }
+      /*IRRELEVANT CSS*/
+      .followlinks {
+        position: fixed;
+        right: 35px;
+        bottom: 15px;
+        display: table;
+      }
+      .followlinks a {
+        display: table-cell;
+        vertical-align: middle;
+        padding-left: 10px;
+        color: white;
+      }
+      .followlinks a svg path {
+        fill: white;
+      }
+      .heartIt {
+        margin-top: 50px;
+        margin-bottom: 80px;
+      }
+      .heartIt p {
+        font-size: 24px;
+        line-height: 40px;
+      }
+      .heartIt img {
+        width: 64px;
+        height: auto;
+        opacity: 0.7;
+        -webkit-filter: invert(100%);
+        filter: invert(100%);
+      }
+      .original {
+        color: #ef6670;
+        font-size: 14px;
+      }
+      .tablink {
+        background-color: #000000;
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+        width: 25%;
+      }
+      .tablink:hover {
+        background-color: #444444;
+      }
+      /* Style the tab content (and add height:100% for full page content) */
+      .tabcontent {
+        color: white;
+        display: none;
+        padding: 100px 20px;
+        height: 100%;
+      }
+      #Form {
+        background-color: #111111;
+      }
+      #Sim-x {
+        background-color: #222222;
+      }
+      #outer h1 {
+        color: white;
+        font-family: "Lato", sans-serif;
+        font-weight: 300;
+        font-size: 24px;
+      }
+      /* Input fields */
+      #outer input {
+        border: 2px solid #ebc92f;
+        border-radius: 5px;
+        padding: 9px;
+        width: 65px;
+        /* box-sizing: border-box; */
+        margin: 5px 5px 5px 0;
+        font-family: "Lato", sans-serif;
+        text-align: center;
+        /* display: block; */
+      }
+      #outer input[type="checkbox"] {
+        padding: 5px;
+      }
+      /* Labels */
+      #outer label {
+        font-family: "Lato", sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        background-color: #f7f7f7;
+        padding: 9px;
+        border-radius: 7px;
+        color: black;
+        display: block;
+        text-align: center;
+      }
+      #outer button,
+      #simulate {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 7px;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        font-family: "Lato", sans-serif;
+        background-color: #ebc92f;
+        cursor: pointer;
+        transition: 0.5s ease-in-out all;
+        margin: 12px 12px 12px 0;
+      }
+      #outer button:hover,
+      #simulate:hover {
+        color: #ebc92f;
+        background-color: white;
+      }
+      #outer button:focus,
+      #simulate:focus {
+        outline: none;
+      }
+      /* Element styling */
+      #simulate {
+        margin: auto;
+        display: block;
+        width: 100%;
+        font-size: 1.2rem;
+      }
+      #workplaces label {
+        display: inline-block;
+      }
+      .workplace {
+        margin: 1.2rem;
+      }
+      #outer label {
+        margin-right: 10px;
+      }
+      #outer input {
+        margin-top: 10px;
+        margin-right: 20px;
+      }
+      #outer p {
+        color: white;
+        font-family: "Lato", sans-serif;
+      }
+      #flexbox {
+        display: flex;
+        overflow-x: scroll;
+      }
+      #workplaces #flexbox {
+        overflow: hidden;
+      }
+      #flexbox > table {
+        min-width: 269px;
+        border: 1px solid #ebc92f;
+        background-color: #ebc92f;
+        border-radius: 5px;
+        margin: 5px;
+      }
+      #flexbox > table label {
+        background: transparent;
+      }
+      #flexbox > table input {
+        border-color: #f7f7f7;
+      }
+      /* #outer {
+      max-width: 800px;
+      margin: 1rem auto;
+      } */
+      #exp-workplace td {
+        width: 130px;
+      }
+      #exp-workplace input {
+        width: 120px;
+      }
+      #outer td {
+        text-align: center;
+        vertical-align: middle;
+      }
+      .scen_form {
+        font-family: 'Lato', sans-serif;
+        width: 90%;
+        margin: auto;
+      }
+      .scen_form input {
+        text-transform: uppercase;
+        border: 2px solid #ebc92f;
+        border-radius: 5px;
+        padding: 9px;
+        color: gray;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 5px 5px 5px 0;
+        font-family: "Lato", sans-serif;
+        text-align: center;
+        display: block;
+      }
+      /* Labels */
+      .scen_form label {
+        font-family: "Lato", sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        background-color: #f7f7f7;
+        padding: 9px;
+        border-radius: 7px;
+        color: black;
+        display: block;
+        text-align: center;
+      }
+      .scen_form button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 7px;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        font-family: "Lato", sans-serif;
+        background-color: #ebc92f;
+        cursor: pointer;
+        transition: 0.5s ease-in-out all;
+        margin: 12px auto;
+        display: block;
+        width: 100%;
+      }
+      .scen_form button:hover {
+        color: #ebc92f;
+        background-color: white;
+      }
+      .scen_form button:focus,
+      .scen_form input:focus {
+        outline: none;
+      }
+      #myBtn {
+        display: block;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        height: 60px;
+        width: 60px;
+        outline: none;
+        background-color: #ebc92f;
+        font-weight: bold;
+        color: black;
+        cursor: pointer;
+        padding: 0px;
+        border-radius: 50%;
+        text-align: center;
+      }
+      #myBtn:hover {
+        background-color: #555;
+      }
+      .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0,0,0);
+        /* Fallback color */
+        background-color: rgba(0,0,0,0.4);
+        /* Black w/ opacity */
+        overflow: hidden;
+      }
+      .modal > table {
+        text-align: left;
+        min-width: 269px;
+        border: 1px solid #ebc92f;
+        background-color: #ebc92f;
+        border-radius: 5px;
+        margin: 5px;
+        padding: 10px;
+        margin-left: 50%;
+      }
+      /* Modal Content/Box */
+      .modal-content {
+        margin-top: 15vh;
+        background-color: #ebc92f;
+        margin: 15% auto;
+        /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        /* Could be more or less, depending on screen size */
+      }
+      /* The Close Button */
+      .close {
+        color: #333333;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .modal input {
+        text-transform: uppercase;
+        border: 2px solid #ebc92f;
+        border-radius: 5px;
+        padding: 9px;
+        color: gray;
+        box-sizing: border-box;
+        margin: 5px 5px 5px 0;
+        font-family: "Lato", sans-serif;
+        text-align: center;
+        display: inline-block !important;
+      }
+      .modal label {
+        font-family: "Lato", sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        background-color: #f7f7f7;
+        padding: 9px;
+        border-radius: 7px;
+        color: black;
+        display: inline-block !important;
+        text-align: center;
+      }
+      /* Labels */
+      .modal table label{
+        font-family: "Lato", sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        background-color: #f7f7f7;
+        padding: 9px;
+        border-radius: 7px;
+        color: black;
+        display: block !important;
+        text-align: center;
+      }
+      .modal input[type="checkbox"] {
+        padding: 5px;
+        display: inline-block !important;
+      }
+      .modal td{
+        padding: 15px;
+      }
+      #btnx {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 7px;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        font-family: "Lato", sans-serif;
+        background-color: black;
+        cursor: pointer;
+        transition: 0.5s ease-in-out all;
+        margin: 12px auto;
+        display: block;
+        width: 100%;
+      }
+      @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+      #cont {
+        width: 500px;
+        margin: auto;
+      }
+      /*Neon*/
+      #cont p {
+        /* font-family: sans-serif; */
+        text-align: center;
+        font-size: 2em;
+        margin: 20px 0 20px 0;
+      }
+      #cont a {
+        text-decoration: none;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        transition: all 0.5s;
+      }
+      #cont p a {
+        color: #ebc92f;
+      }
+      #cont p a:hover {
+        -webkit-animation: neon3 1.5s ease-in-out infinite alternate;
+        animation: neon3 1.5s ease-in-out infinite alternate;
+        color: #ffffff;
+      }
+      @-webkit-keyframes neon3 {
+        from {
+          text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FFDD1B, 0 0 70px #FFDD1B, 0 0 80px #FFDD1B, 0 0 100px #FFDD1B, 0 0 150px #FFDD1B;
+        }
+        to {
+          text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FFDD1B, 0 0 35px #FFDD1B, 0 0 40px #FFDD1B, 0 0 50px #FFDD1B, 0 0 75px #FFDD1B;
+        }
+      }
+      @keyframes neon3 {
+        from {
+          text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FFDD1B, 0 0 70px #FFDD1B, 0 0 80px #FFDD1B, 0 0 100px #FFDD1B, 0 0 150px #FFDD1B;
+        }
+        to {
+          text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FFDD1B, 0 0 35px #FFDD1B, 0 0 40px #FFDD1B, 0 0 50px #FFDD1B, 0 0 75px #FFDD1B;
+        }
+      }
+      .pulse {
+        width: 10px;
+        height: 10px;
+        border: 5px solid #ebc92f;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        border-radius: 30px;
+        background-color: #ebc92f;
+        z-index: 10;
+        position: absolute;
+        display: none;
+      }
+      .dot {
+        border: 10px solid #ebc92f;
+        background: transparent;
+        -webkit-border-radius: 60px;
+        -moz-border-radius: 60px;
+        border-radius: 60px;
+        height: 50px;
+        width: 50px;
+        -webkit-animation: pulse 1s ease-out;
+        -moz-animation: pulse 1s ease-out;
+        animation: pulse 1s ease-out;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        position: absolute;
+        top: -25px;
+        left: -25px;
+        z-index: 1;
+        opacity: 0;
+      }
+      @-moz-keyframes pulse {
+        0% {
+          -moz-transform: scale(0);
+          opacity: 0.0;
+        }
+        25% {
+          -moz-transform: scale(0);
+          opacity: 0.1;
+        }
+        50% {
+          -moz-transform: scale(0.1);
+          opacity: 0.3;
+        }
+        75% {
+          -moz-transform: scale(0.5);
+          opacity: 0.5;
+        }
+        100% {
+          -moz-transform: scale(1);
+          opacity: 0.0;
+        }
+      }
+      @-webkit-keyframes pulse {
+        0% {
+          -webkit-transform: scale(0);
+          opacity: 0.0;
+        }
+        25% {
+          -webkit-transform: scale(0);
+          opacity: 0.1;
+        }
+        50% {
+          -webkit-transform: scale(0.1);
+          opacity: 0.3;
+        }
+        75% {
+          -webkit-transform: scale(0.5);
+          opacity: 0.5;
+        }
+        100% {
+          -webkit-transform: scale(1);
+          opacity: 0.0;
+        }
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(0);
+          opacity: 0.0;
+        }
+        25% {
+          transform: scale(0);
+          opacity: 0.1;
+        }
+        50% {
+          transform: scale(0.1);
+          opacity: 0.3;
+        }
+        75% {
+          transform: scale(0.5);
+          opacity: 0.5;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.0;
+        }
+      }
+
